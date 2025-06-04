@@ -16,10 +16,10 @@ const Hero = () => {
         college-specific, and built for real connection.
       </p>
       <a
-        href="#contact"
+        
         className="bg-blue-600 text-white px-6 py-3 rounded text-lg hover:bg-blue-700 transition"
       >
-        Get Started
+        Explore More
       </a>
 
       
