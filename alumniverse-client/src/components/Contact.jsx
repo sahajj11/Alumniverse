@@ -2,7 +2,7 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-16 bg-blue-50 text-center px-6">
+    <section id="contact" className="py-16 bg-gradient-to-r from-blue-100 to-blue-300 text-center px-6">
       <h3 className="text-3xl font-bold mb-4">Want Alumniverse for Your College?</h3>
       <p className="mb-6 text-lg">
         We’d love to hear from you. Drop a message and let's connect.
