@@ -43,7 +43,7 @@ export const loginAlumni=async(req,res)=>{
     const {email,password}=req.body
 
      try {
-    const alumni = await Alumni.findOne({ email });
+    const alumni = await Alumni.findOne({ email }).populate("college")
 
     if (!alumni) {
       return res.status(404).json({ message: "User not found" });
@@ -68,7 +68,7 @@ export const loginAlumni=async(req,res)=>{
         email: alumni.email,
         branch: alumni.branch,
         graduationYear: alumni.graduationYear,
-        college: alumni.college,
+        college: alumni.college.name,
       },
     });
   } catch (err) {
