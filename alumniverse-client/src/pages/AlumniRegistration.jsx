@@ -52,7 +52,7 @@ const AlumniAuth = () => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("alumni", JSON.stringify(res.data.alumni));
 
-      navigate("/portal")
+      navigate("/portal/dashboard")
     } catch (err) {
       setMessage(err.response?.data?.message || 'Login failed');
     }

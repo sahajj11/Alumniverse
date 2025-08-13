@@ -13,6 +13,14 @@ const alumniSchema=new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'College',
   },
+  profilePic:{
+    type:String,
+    default:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRewI4tonTOU-MiDbFkpGQ2MN_lMsLZCxSaBg&s"
+  },
+  bio:{
+    type:String,
+    default:"Passionate software developer and mentor for upcoming engineers."
+  }
 })
 
 const Alumni=mongoose.model("Alumni",alumniSchema)

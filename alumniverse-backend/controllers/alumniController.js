@@ -58,11 +58,12 @@ export const loginAlumni=async(req,res)=>{
     const token = jwt.sign(
       { userId: alumni._id, college: alumni.college },
       SECRET,
-      { expiresIn: "7d" }
+      { expiresIn: "30d" }
     );
 
     res.status(200).json({
       message: "Login successful",
+      token,
       alumni: {
         name: alumni.name,
         email: alumni.email,
@@ -76,4 +77,44 @@ export const loginAlumni=async(req,res)=>{
     res.status(500).json({ message: "Server error" });
   }
 
+}
+
+export const getALumniByCollege=async(req,res,)=>{
+  try {
+    const collegeId = req.user.college._id;
+
+    const alumni = await Alumni.find({ college: collegeId }).select('-password'); // exclude passwords
+
+    res.status(200).json(alumni);
+  } catch (err) {
+    console.error('Error fetching alumni by college:', err);
+    res.status(500).json({ message: 'Server error while fetching alumni' });
+  }
+
+}
+
+export const alumniByCollege=async(req,res)=>{
+  try{
+  const alumniList=await Alumni.find({college:req.user.college}).populate('college');
+  res.json(alumniList)
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+export const getMyProfile=async(req,res)=>{
+  try{
+    const alumni=await Alumni.findById(req.user._id).populate("college","name").select("-password")
+
+    if (!alumni) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json(alumni)
+
+  }catch(err){
+    console.error("Error fetching profile:", err);
+    res.status(500).json({ message: "Server error" });
+  }
 }
